@@ -375,10 +375,10 @@ bash <br>
 先停掉旧程序（Ctrl+C），然后 cd 到新文件所在目录 <br>
 cd C:\Users\你的用户名\Downloads <br>
 python stock_viewer.py <br>
-``` <br>
+<br>
  <br>
 新版程序启动后终端会显示： <br>
-``` <br>
+<br>
 📈  股票价格看板 · Alpha Vantage 版 <br>
 页面底部也会显示 "Alpha Vantage · 免费额度 25次/分钟"，而不是 "Yahoo Finance · yfinance"。 <br>
  <br>
