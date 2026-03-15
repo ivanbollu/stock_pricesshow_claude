@@ -1,7 +1,7 @@
-#stock_pricesshow_claude <br>
+# stock_pricesshow_claude <br>
 演示用claude免费订阅服务，vibe_coding一个简易的股票价格查询网页。 <br>
  <br>
-#我把调试的过程和最后的页面放着这里 <br>
+# 我把调试的过程和最后的页面放着这里 <br>
  <br>
 帮我写一个简易的利用yfinance api接口展示股票价格的程序 <br>
  <br>
@@ -61,7 +61,7 @@ pip install yfinance --upgrade <br>
 方案二：在代码中加延迟 + 自定义 User-Agent <br>
  <br>
 在 StockHandler 的查询部分替换为： <br>
- <br>
+``` <br>
 python <br>
 import yfinance as yf <br>
 import time <br>
@@ -74,15 +74,17 @@ tk = yf.Ticker(symbol) <br>
 fast = tk.fast_info <br>
 price = fast.last_price <br>
 prev_close = fast.previous_close <br>
+```
 fast_info 比 info 轻量得多，触发限流的概率更低。 <br>
  <br>
 方案三：设置代理（如果有的话） <br>
  <br>
-python <br>
+```python <br>
 import yfinance as yf <br>
 yf.set_tz_cache_location("/tmp/tz_cache") <br>
  <br>
 tk = yf.Ticker(symbol, proxy="http://your-proxy:port") <br>
+```
 方案四：换用备用数据源 <br>
  <br>
 如果 Yahoo 持续限流，可以换用免费的 Alpha Vantage： <br>
@@ -125,10 +127,11 @@ python stock_viewer.py <br>
 第二步：申请免费 Key（30秒搞定） 👉 https://www.alphavantage.co/support/#api-key 填写邮箱 → 立即显示你的 Key，无需验证邮件。 <br>
  <br>
 第三步：替换 Key 打开 stock_viewer.py，修改第 16 行： <br>
- <br>
+``` <br>
 python <br>
 API_KEY = "demo"         # 改成 → <br>
 API_KEY = "你的真实Key" <br>
+```
 免费额度： 每分钟 25 次请求，每天 500 次，支持所有美股代码（AAPL、TSLA、NVDA 等）。 <br>
  <br>
 Stock viewer <br>
@@ -181,7 +184,7 @@ A: 使用了VPN或代理 <br>
 127.0.0.1:1080 <br>
 localhost:10809 <br>
 找到后告诉我，我帮你一行代码加进去。或者你也可以自己在代码里找到 fetch_alpha 函数，按下面改： <br>
- <br>
+``` <br>
 python <br>
 def fetch_alpha(function, symbol): <br>
     params = {"function": function, "symbol": symbol, "apikey": API_KEY} <br>
@@ -194,6 +197,7 @@ def fetch_alpha(function, symbol): <br>
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}) <br>
     with opener.open(req, timeout=10) as resp:   # 注意这里改成 opener.open <br>
         return json.loads(resp.read().decode()) <br>
+```
 把 127.0.0.1:7890 换成你实际的代理地址即可。 <br>
  <br>
 还是Too Many Requests. Rate limited. Try after a while. <br>
