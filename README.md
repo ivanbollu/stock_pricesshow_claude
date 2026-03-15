@@ -1,5 +1,5 @@
-# stock_pricesshow_claude
-# stock_pricesshow_claude
+stock_pricesshow_claude
+stock_pricesshow_claude
 stock_pricesshow_claude
 演示用claude免费订阅服务，vibe_coding一个简易的股票价格查询网页。
 
@@ -22,10 +22,10 @@ Created a file, read a file
 使用方法：
 
 bash
-# 安装依赖（首次运行会自动安装）
+安装依赖（首次运行会自动安装）
 pip install yfinance
 
-# 启动程序
+启动程序
 python stock_viewer.py
 程序会自动打开浏览器，访问 http://localhost:8080
 
@@ -69,11 +69,11 @@ python
 import yfinance as yf
 import time
 
-# 每次请求前加短暂延迟
+每次请求前加短暂延迟
 time.sleep(1)
 
 tk = yf.Ticker(symbol)
-# 使用 fast_info 替代 info（请求更轻量）
+使用 fast_info 替代 info（请求更轻量）
 fast = tk.fast_info
 price = fast.last_price
 prev_close = fast.previous_close
@@ -190,7 +190,7 @@ def fetch_alpha(function, symbol):
     params = {"function": function, "symbol": symbol, "apikey": API_KEY}
     url = "https://www.alphavantage.co/query?" + urllib.parse.urlencode(params)
     
-    # 添加这两行，换成你自己的代理地址和端口
+    添加这两行，换成你自己的代理地址和端口
     proxy = urllib.request.ProxyHandler({"http": "http://127.0.0.1:7890", "https": "http://127.0.0.1:7890"})
     opener = urllib.request.build_opener(proxy)
     
@@ -254,9 +254,9 @@ Show more
 请运行以下命令查看你的代理端口：
 
 powershell
-# PowerShell 里运行
+PowerShell 里运行
 netsh winhttp show proxy
-# 或者
+或者
 [System.Net.WebRequest]::DefaultWebProxy.GetProxy("https://www.alphavantage.co")
 或者直接打开你的 VPN 软件查看 HTTP 代理端口（通常是 7890、1080、10809 之类）。
 
@@ -375,7 +375,7 @@ AAPLMSFTGOOGLTSLANVDAAMZNMETA腾讯阿里BTC
 确认下载了最新文件 —— 重新下载我刚才生成的 stock_viewer.py
 确认运行的是新文件 —— 在终端里用完整路径运行，比如：
 bash
-# 先停掉旧程序（Ctrl+C），然后 cd 到新文件所在目录
+先停掉旧程序（Ctrl+C），然后 cd 到新文件所在目录
 cd C:\Users\你的用户名\Downloads
 python stock_viewer.py
 ```
@@ -386,13 +386,13 @@ python stock_viewer.py
 页面底部也会显示 "Alpha Vantage · 免费额度 25次/分钟"，而不是 "Yahoo Finance · yfinance"。
 
 但是powershell 显示这个： python stock_viewer4.py
-======================================================
+
   📈  股票价格看板 · Alpha Vantage 版
-======================================================
+
   ✅  服务启动: http://localhost:8080
   🔑  当前 Key : HR92OTJD4THLCOYR
   ⏹   退出: Ctrl + C
-======================================================
+
 
 10:28
 程序是对的！但浏览器访问的是旧页面缓存。
@@ -442,10 +442,10 @@ PS C:\Users\vanbo> netstat -ano | findstr :8080
 找到了！PID 20316 是占用 8080 端口的旧进程。运行这两条命令干掉它，然后重启新程序：
 
 powershell
-# 第一步：杀掉旧进程
+第一步：杀掉旧进程
 taskkill /PID 20316 /F
 
-# 第二步：重新启动新程序
+第二步：重新启动新程序
 python stock_viewer4.py
 然后再打开 http://localhost:8080，这次应该就是 Alpha Vantage 版了！
 
