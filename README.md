@@ -212,33 +212,33 @@ Claude.ai 的沙箱环境阻止了我这边运行网络请求，所以文件生�
 
 把 curl 的返回结果粘贴给我，我来判断下一步怎么处理。
 <p align="right"><b>
-    StatusCode        : 200
-    StatusDescription : OK
-    Content           : {
-                            "Global Quote": {
-                                "01. symbol": "IBM",
-                                "02. open": "247.6700",
-                                "03. high": "249.7200",
-                                "04. low": "244.7100",
-                                "05. price": "246.2800",
-                                "06. volume...
-    RawContent        : HTTP/1.1 200 OK
-                        Connection: keep-alive
-                        allow: GET, HEAD, OPTIONS
-                        cross-origin-opener-policy: same-origin
-                        nel: {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction"...
-    Forms             : {}
-    Headers           : {[Connection, keep-alive], [allow, GET, HEAD, OPTIONS], [cross-origin-opener-policy, same-origin],
-                        [nel, {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"
-                        failure_fraction":0.1}]...}
-    Images            : {}
-    InputFields       : {}
-    Links             : {}
-    ParsedHtml        : mshtml.HTMLDocumentClass
-    RawContentLength  : 385
+    StatusCode        : 200 <br>
+    StatusDescription : OK <br>
+    Content           : { <br>
+                            "Global Quote": { <br>
+                                "01. symbol": "IBM", <br>
+                                "02. open": "247.6700", <br>
+                                "03. high": "249.7200", <br>
+                                "04. low": "244.7100", <br>
+                                "05. price": "246.2800", <br>
+                                "06. volume... <br>
+    RawContent        : HTTP/1.1 200 OK <br>
+                        Connection: keep-alive <br>
+                        allow: GET, HEAD, OPTIONS <br>
+                        cross-origin-opener-policy: same-origin <br>
+                        nel: {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction"... <br>
+    Forms             : {} <br>
+    Headers           : {[Connection, keep-alive], [allow, GET, HEAD, OPTIONS], [cross-origin-opener-policy, same-origin], <br>
+                        [nel, {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01," <br>
+                        failure_fraction":0.1}]...} <br>
+    Images            : {} <br>
+    InputFields       : {} <br>
+    Links             : {} <br>
+    ParsedHtml        : mshtml.HTMLDocumentClass <br>
+    RawContentLength  : 385 <br>
     
     Show more
-    </b></p>
+</b></p>
 09:49
 网络完全没问题，API 也正常返回数据！这说明问题出在 Python 程序本身没有走代理。
 
@@ -413,19 +413,19 @@ AAPLMSFTGOOGLTSLANVDAAMZNMETA腾讯阿里BTC
     netstat -ano | findstr :8080
     把输出结果粘贴给我，我们找到占用 8080 的旧进程把它关掉。
 <p align="right"><b>    
-    PS C:\Users\vanbo> netstat -ano | findstr :8080
-      TCP    0.0.0.0:8080           0.0.0.0:0              LISTENING       20316
-      TCP    127.0.0.1:8080         127.0.0.1:49465        TIME_WAIT       0
-      TCP    127.0.0.1:8080         127.0.0.1:51124        TIME_WAIT       0
-      TCP    127.0.0.1:8080         127.0.0.1:52572        TIME_WAIT       0
-      TCP    127.0.0.1:8080         127.0.0.1:57942        TIME_WAIT       0
-      TCP    127.0.0.1:8080         127.0.0.1:58347        TIME_WAIT       0
-      TCP    127.0.0.1:8080         127.0.0.1:58509        TIME_WAIT       0
-      TCP    127.0.0.1:8080         127.0.0.1:60674        TIME_WAIT       0
-      TCP    127.0.0.1:8080         127.0.0.1:61381        TIME_WAIT       0
-      TCP    127.0.0.1:8080         127.0.0.1:63253        TIME_WAIT       0
-      TCP    127.0.0.1:8080         127.0.0.1:63265        TIME_WAIT       0
-      TCP    192.168.1.4:59150      159.75.125.10:8080     ESTABLISHED     20636
+    PS C:\Users\vanbo> netstat -ano | findstr :8080 <br>
+      TCP    0.0.0.0:8080           0.0.0.0:0              LISTENING       20316 <br>
+      TCP    127.0.0.1:8080         127.0.0.1:49465        TIME_WAIT       0 <br>
+      TCP    127.0.0.1:8080         127.0.0.1:51124        TIME_WAIT       0 <br>
+      TCP    127.0.0.1:8080         127.0.0.1:52572        TIME_WAIT       0 <br>
+      TCP    127.0.0.1:8080         127.0.0.1:57942        TIME_WAIT       0 <br>
+      TCP    127.0.0.1:8080         127.0.0.1:58347        TIME_WAIT       0 <br>
+      TCP    127.0.0.1:8080         127.0.0.1:58509        TIME_WAIT       0 <br>
+      TCP    127.0.0.1:8080         127.0.0.1:60674        TIME_WAIT       0 <br>
+      TCP    127.0.0.1:8080         127.0.0.1:61381        TIME_WAIT       0 <br>
+      TCP    127.0.0.1:8080         127.0.0.1:63253        TIME_WAIT       0 <br>
+      TCP    127.0.0.1:8080         127.0.0.1:63265        TIME_WAIT       0 <br>
+      TCP    192.168.1.4:59150      159.75.125.10:8080     ESTABLISHED     20636 <br>
 </b></p>
 10:31
 找到了！PID 20316 是占用 8080 端口的旧进程。运行这两条命令干掉它，然后重启新程序：
