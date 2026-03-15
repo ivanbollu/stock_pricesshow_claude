@@ -1,8 +1,9 @@
 # stock_pricesshow_claude
 
-演示用claude免费订阅服务，vibe_coding一个简易的股票价格查询网页。
+演示用claude chat对话框，vibe_coding一个简易的股票价格查询网页。
+后面再尝试用claude code试试简单的功能。
 
-# 我把调试的过程和最后的页面放着这里（靠右的文字是我输入的）
+我把调试的过程和最后的页面放着这里（靠右的文字是我输入的）
 
 <p align="right"><b>帮我写一个简易的利用yfinance api接口展示股票价格的程序</b></p>
 
